@@ -1,0 +1,44 @@
+<div class="dialog-container">
+    <div class="header">
+        <strong>{{data.label}}</strong>
+    </div>
+    <form class="create-form" [formGroup]="trelloForm" autocomplete="off" *ngIf="data.label === 'Add List'">
+        <div class="body">
+            <div class="row">
+                <div class="col-12 mrb-10 mrt-10">
+                    <label>Title</label>
+                    <input id="title" class="form-control" type="text" name="title" formControlName="title" placeholder="Enter Title"
+                            required>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <button style="margin-right: 10px;" mat-raised-button color="basic" mat-dialog-close>Cancel</button>
+            <button mat-raised-button color="primary"
+                [mat-dialog-close]="trelloForm" [disabled]="!trelloForm.valid">Create</button>
+        </div>
+    </form>
+    <!-- /Trello List-->
+    <form class="create-form" [formGroup]="cardForm" autocomplete="off" *ngIf="data.label === 'Add Card'">
+        <div class="body">
+            <div class="row">
+                <div class="col-12 mrb-10 mrt-10">
+                    <label>Name</label>
+                    <input id="name" class="form-control" type="text" name="name" formControlName="name" placeholder="Enter Name"
+                            required>
+                </div>
+                <div class="col-12 mrb-10 mrt-10">
+                    <label>Description</label>
+                    <input id="description" class="form-control" type="text" name="description" formControlName="description" placeholder="Enter Description"
+                            required>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <button style="margin-right: 10px;" mat-raised-button color="basic" mat-dialog-close>Cancel</button>
+            <button mat-raised-button color="primary"
+                [mat-dialog-close]="cardForm" [disabled]="!cardForm.valid">Create</button>
+        </div>
+    </form>
+    <!-- /Card-->
+</div>

@@ -1,0 +1,93 @@
+<div class="dashboard-container">
+  <div class="header mrb-5">
+    <h1 class="text-center">Trello Board</h1>
+  </div>
+  <div class="body">
+    <div class="row mrb-5">
+      <div class="col-10">&nbsp;</div>
+      <div class="col-2"><button class="btn btn-primary pull-right" (click)="addTrelloList()">Add List</button></div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <div class="card-list-container">
+          <header>
+            <div class="row">
+              <div class="col-10 title-case">{{trelloLists[0].title}}</div>
+              <div class="col-2"><button type="button" class="btn-close" aria-label="Close"
+                  (click)="removeTrelloList(trelloLists[0].title)"></button></div>
+            </div>
+          </header>
+          <section>
+            <div style="height: 100%;" cdkDropList #trelloDragList="cdkDropList" [cdkDropListData]="trelloLists[0]['products']"
+              [cdkDropListConnectedTo]="[trelloDropList]" (cdkDropListDropped)="drop($event)">
+              <div class="card" *ngFor="let product of trelloLists[0]['products']" cdkDrag>
+                <div class="block">
+                  <span>{{product.name}}</span>
+                  <button type="button" class="btn-close sm pull-right" aria-label="Close"
+                    (click)="removeCard(trelloLists[0].title, product)"></button>
+                </div>
+                <div style="font-size: 12px;" class="block">{{product.description}}</div>
+              </div>
+            </div>
+          </section>
+          <footer class="text-center">
+            <button type="button" class="add-btn" (click)="addCard(trelloLists[0].title)">+</button>
+          </footer>
+        </div>
+      </div>
+      <!-- /drag container -->
+      <div class="col-3">
+        <div class="card-list-container">
+          <header>
+            <div class="row">
+              <div class="col-10 title-case">{{trelloLists[1].title}}</div>
+              <div class="col-2"><button type="button" class="btn-close" aria-label="Close"
+                  (click)="removeTrelloList(trelloLists[1].title)"></button></div>
+            </div>
+          </header>
+          <section>
+            <div style="height: 100%;" cdkDropList #trelloDropList="cdkDropList" [cdkDropListData]="trelloLists[1]['products']"
+              [cdkDropListConnectedTo]="[trelloDragList]" (cdkDropListDropped)="drop($event)">
+              <div class="card" *ngFor="let product of trelloLists[1]['products']" cdkDrag>
+                <div class="block">
+                  <span>{{product.name}}</span>
+                  <button type="button" class="btn-close sm pull-right" aria-label="Close"
+                    (click)="removeCard(trelloLists[1].title, product)"></button>
+                </div>
+                <div style="font-size: 12px;" class="block">{{product.description}}</div>
+              </div>
+            </div>
+          </section>
+          <footer class="text-center">
+            <button type="button" class="add-btn" (click)="addCard(trelloLists[1].title)">+</button>
+          </footer>
+        </div>
+      </div>
+      <!-- /drop container -->
+      <div class="col-3" *ngFor="let list of trelloLists | slice : 2 : trelloLists.length">
+        <div class="card-list-container">
+          <header>
+            <div class="row">
+              <div class="col-10 title-case">{{list.title}}</div>
+              <div class="col-2"><button type="button" class="btn-close" aria-label="Close"
+                  (click)="removeTrelloList(list.title)"></button></div>
+            </div>
+          </header>
+          <section>
+            <div class="card" *ngFor="let product of list['products']" cdkDrag>
+              <div class="block">
+                <span>{{product.name}}</span>
+                <button type="button" class="btn-close sm pull-right" aria-label="Close"
+                  (click)="removeCard(list.title, product)"></button>
+              </div>
+              <div style="font-size: 12px;" class="block">{{product.description}}</div>
+            </div>
+          </section>
+          <footer class="text-center">
+            <button type="button" class="add-btn" (click)="addCard(list.title)">+</button>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
